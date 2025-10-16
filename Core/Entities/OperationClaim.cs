@@ -9,6 +9,6 @@ namespace Core.Entities
     public class OperationClaim : Entity
     {
         public string Name { get; set; }
-        public ICollection<UserOperationClaim> USerOperationClaim { get; set; } = new List<UserOperationClaim>();
+        public ICollection<UserOperationClaim> UserOperationClaim { get; set; } = new List<UserOperationClaim>();
     }
 }
