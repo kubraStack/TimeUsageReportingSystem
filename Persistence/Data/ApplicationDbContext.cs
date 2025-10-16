@@ -24,6 +24,7 @@ namespace Persistence.Data
         public DbSet<TimeLog> TimeLogs { get; set; } = null!;
         public DbSet<Department> Departments { get; set; } = null!;
 
+
         //Güvenlik varlıkları
         public DbSet<OperationClaim> OperationClaims { get; set; } = null!;
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; } = null!;
