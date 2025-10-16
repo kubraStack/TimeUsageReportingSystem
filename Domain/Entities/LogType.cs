@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class User
+    public enum LogType
     {
-
+        Entry = 1,
+        Exit = 2,
+        LunchStart = 3,
+        LunchEnd = 4
     }
 }
