@@ -3,6 +3,7 @@ using Core.Entities;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Persistence.SeedData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,10 @@ namespace Persistence.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
             modelBuilder.Entity<ReportResultDto>().HasNoKey(); //Raporlama DTO'su anahtarsız
+
+            AdminUserSeed.Seed(modelBuilder);
+            OperationClaimSeed.Seed(modelBuilder);
+            TimeLogSeed.Seed(modelBuilder);
 
             //SoftDelete için global query filtresi
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())

@@ -1,9 +1,11 @@
+using Application;
 using Core;
 using Core.Utilities.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Persistence;
 using System.Text;
 
 
@@ -32,6 +34,8 @@ builder.Services.AddCors(options =>
         });
 });
 builder.Services.AddCoreServices(tokenOptions);
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(
