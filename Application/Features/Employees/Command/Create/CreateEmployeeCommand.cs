@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Employees.Command.Create
 {
-    public class CreateEmployeeCommand : IRequest<int>
+    public class CreateEmployeeCommand : IRequest<CreateEmployeeResponse>
     {
         public int DepartmentId { get; set; }
         public string FirstName { get; set; }

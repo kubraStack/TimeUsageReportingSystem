@@ -12,30 +12,27 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Employees.Command.Create
 {
-    public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, int>
+    public class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, CreateEmployeeResponse>
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly EncryptionHelper _encryptionHelper;
-        public CreateEmployeeHandler(IEmployeeRepository employeeRepository, EncryptionHelper encryptionHelper)
+        private readonly IMapper _mapper;
+
+        public CreateEmployeeHandler(IEmployeeRepository employeeRepository, EncryptionHelper encryptionHelper, IMapper mapper)
         {
             _employeeRepository = employeeRepository;
             _encryptionHelper = encryptionHelper;
+            _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+        public async Task<CreateEmployeeResponse> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
-            //Şifre hash/salt oluşturma
-            HashingHelper.CreatePasswordHash(
-                request.Password,
-                out byte[] passwordHash,
-                out byte[] passwordSalt
-            );
-            //Ad ve Soyad şifreleme
+            // Şifreleme & hash işlemleri
+            HashingHelper.CreatePasswordHash(request.Password, out var passwordHash, out var passwordSalt);
             string encryptedFirstName = _encryptionHelper.EncryptString(request.FirstName);
             string encryptedLastName = _encryptionHelper.EncryptString(request.LastName);
 
-
-            //Entity oluşturma
+            // Entity oluşturma
             var employee = new Employee
             {
                 DepartmentId = request.DepartmentId,
@@ -48,9 +45,18 @@ namespace Application.Features.Employees.Command.Create
                 CreatedDate = DateTime.UtcNow,
             };
 
-            //Veritabanı kaydetme
-            var createdEmployee = await _employeeRepository.AddAsync( employee );
-            return createdEmployee.Id;
+            var createdEmployee = await _employeeRepository.AddAsync(employee);
+
+            // Response oluşturma
+            var response = new CreateEmployeeResponse
+            {
+                Id = createdEmployee.Id,
+                Message = "Employee created successfully.",
+                CreatedAt = createdEmployee.CreatedDate
+            };
+
+            return response;
         }
     }
+
 }
