@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Encryption
 {
-    public class EncryptionHelper
+    public  class EncryptionHelper 
     {
         private readonly byte[] _key;
         private readonly byte[] _iv;
@@ -29,7 +29,7 @@ namespace Core.Utilities.Encryption
             }
         }
 
-        public string EncryptString(string plainText)
+        public  string EncryptString(string plainText)
         {
             if (string.IsNullOrEmpty(plainText))
             {

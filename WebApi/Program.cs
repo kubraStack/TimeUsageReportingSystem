@@ -1,5 +1,7 @@
 using Application;
 using Core;
+using Core.Utilities.Encryption;
+using Microsoft.Extensions.Configuration;
 using Core.Utilities.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +35,7 @@ builder.Services.AddCors(options =>
                     .AllowCredentials();
         });
 });
+builder.Services.AddSingleton<EncryptionHelper>();
 builder.Services.AddCoreServices(tokenOptions);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
