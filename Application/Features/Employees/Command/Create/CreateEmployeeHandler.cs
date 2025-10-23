@@ -16,13 +16,11 @@ namespace Application.Features.Employees.Command.Create
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly EncryptionHelper _encryptionHelper;
-        private readonly IMapper _mapper;
 
-        public CreateEmployeeHandler(IEmployeeRepository employeeRepository, EncryptionHelper encryptionHelper, IMapper mapper)
+        public CreateEmployeeHandler(IEmployeeRepository employeeRepository, EncryptionHelper encryptionHelper)
         {
             _employeeRepository = employeeRepository;
             _encryptionHelper = encryptionHelper;
-            _mapper = mapper;
         }
 
         public async Task<CreateEmployeeResponse> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)

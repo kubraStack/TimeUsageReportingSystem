@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Common\Behaviors\" />
     <Folder Include="Features\Employees\Command\Delete\" />
-    <Folder Include="Features\Employees\Command\Update\" />
     <Folder Include="Features\Employees\Models\" />
     <Folder Include="Features\Employees\Queries\" />
   </ItemGroup>

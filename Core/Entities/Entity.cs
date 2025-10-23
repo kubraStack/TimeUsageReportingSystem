@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Entity : IEntity, ISoftDeleted
+    public  class Entity : IEntity, ISoftDeleted
     {
         public int Id { get; set; }
         public DateTime? UpdatedDate { get; set; }

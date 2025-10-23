@@ -1,4 +1,5 @@
-﻿using Application.Features.Employees.Command.CreateEmployee;
+﻿using Application.Features.Employees.Command.Create;
+using Application.Features.Employees.Command.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -20,8 +21,15 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateEmployeeCommand command)
         {
-            int newId = await _mediator.Send(command);
-            return  Ok(newId);
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateEmployeeCommand command)
+        {
+            UpdateEmployeeResponse response = await _mediator.Send(command);
+            return Ok(response);
         }
     }
 }
