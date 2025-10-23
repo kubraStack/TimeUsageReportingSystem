@@ -1,9 +1,11 @@
 ﻿using Application.Repositories;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +31,18 @@ namespace Persistence.Repositories
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate, bool ignoreQueryFilters = false, CancellationToken cancellationToken = default)
+        {
+            IQueryable<T> query = _dbContext.Set<T>().AsQueryable();
+            if (ignoreQueryFilters)
+            {
+                query = query.IgnoreQueryFilters();
+            }
+            return await query 
+                .Where(predicate)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<T?> GetByIdAsync(int id)

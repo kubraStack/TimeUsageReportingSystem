@@ -2,6 +2,8 @@
 using Application.Features.Employees.Command.Create;
 using Application.Features.Employees.Command.Delete;
 using Application.Features.Employees.Command.Update;
+using Application.Features.Employees.Models;
+using Application.Features.Employees.Queries.GetEmployeeId;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -51,6 +53,14 @@ namespace WebApi.Controllers
         {
             ChangePasswordResponse response = await _mediator.Send(command);
             return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var query = new GetEmployeeByIdQuery { Id = id };
+            EmployeeDetailDto employeeDetail = await _mediator.Send(query);
+            return Ok(employeeDetail);
         }
     }
 }

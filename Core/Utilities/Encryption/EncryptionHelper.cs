@@ -67,27 +67,37 @@ namespace Core.Utilities.Encryption
                 return cipherText;
             }
 
-            var buffer = Convert.FromBase64String(cipherText);
-
-            using (var aes = Aes.Create())
+            try
             {
-                aes.Key = _key;
-                aes.IV = _iv;
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
+                var buffer = Convert.FromBase64String(cipherText);
 
-                var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
-                using (var ms = new MemoryStream(buffer))
+                using (var aes = Aes.Create())
                 {
+                    aes.Key = _key;
+                    aes.IV = _iv;
+                    aes.Mode = CipherMode.CBC;
+                    aes.Padding = PaddingMode.PKCS7;
+
+                    var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+                    using (var ms = new MemoryStream(buffer))
                     using (var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                    using (var sr = new StreamReader(cs, Encoding.UTF8))
                     {
-                        using (var sr = new StreamReader(cs, Encoding.UTF8))
-                        {
-                            return sr.ReadToEnd();
-                        }
+                        return sr.ReadToEnd();
                     }
                 }
+            }
+            catch (CryptographicException ex)
+            {
+              
+                Console.WriteLine($"Kriptografi hatası ({ex.Message}): {cipherText}");
+                return "[Decryption Error]";
+            }
+            catch (FormatException)
+            {
+                // Base64 hatasını da burada yakalarız.
+                return "[Invalid Base64]";
             }
         }
     }
