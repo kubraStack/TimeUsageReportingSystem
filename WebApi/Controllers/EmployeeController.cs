@@ -1,4 +1,5 @@
-﻿using Application.Features.Employees.Command.Create;
+﻿using Application.Features.Employees.Command.ChangePasword;
+using Application.Features.Employees.Command.Create;
 using Application.Features.Employees.Command.Delete;
 using Application.Features.Employees.Command.Update;
 using MediatR;
@@ -35,6 +36,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
+        //Silme softdelete
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
@@ -43,5 +45,12 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
+        //Şifre Güncelleme
+        [HttpPut("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command)
+        {
+            ChangePasswordResponse response = await _mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
