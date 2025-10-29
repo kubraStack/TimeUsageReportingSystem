@@ -1,4 +1,5 @@
 ﻿using Application.Features.Department.Command.Create;
+using Application.Features.Department.Command.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,13 @@ namespace WebApi.Controllers
         {
           var response = await  _mediator.Send(command);
           return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateDepartmentCommand command)
+        {
+            UpdateDepartmentResponse response = await _mediator.Send(command);
+            return Ok(response);
         }
     }
 }
