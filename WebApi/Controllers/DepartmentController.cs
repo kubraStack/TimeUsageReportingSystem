@@ -1,4 +1,5 @@
 ﻿using Application.Features.Department.Command.Create;
+using Application.Features.Department.Command.Delete;
 using Application.Features.Department.Command.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -30,5 +31,14 @@ namespace WebApi.Controllers
             UpdateDepartmentResponse response = await _mediator.Send(command);
             return Ok(response);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            DeleteDepartmentCommand command = new DeleteDepartmentCommand { Id = id };
+            DeleteDepartmentResponse response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
     }
 }
