@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Behaviors\" />
+    <Folder Include="Features\Department\Models\" />
+    <Folder Include="Features\Department\Queries\" />
   </ItemGroup>
 
 </Project>
