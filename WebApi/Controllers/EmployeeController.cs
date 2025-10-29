@@ -3,6 +3,7 @@ using Application.Features.Employees.Command.Create;
 using Application.Features.Employees.Command.Delete;
 using Application.Features.Employees.Command.Update;
 using Application.Features.Employees.Models;
+using Application.Features.Employees.Queries.GetAllEmployee;
 using Application.Features.Employees.Queries.GetEmployeeId;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -61,6 +62,13 @@ namespace WebApi.Controllers
             var query = new GetEmployeeByIdQuery { Id = id };
             EmployeeDetailDto employeeDetail = await _mediator.Send(query);
             return Ok(employeeDetail);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetEmployeeListQuery query)
+        {
+            EmployeeListDto employeeList = await _mediator.Send(query);
+            return Ok(employeeList);
         }
     }
 }

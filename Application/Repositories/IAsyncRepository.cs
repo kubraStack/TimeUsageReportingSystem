@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Models.Paging;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,14 @@ namespace Application.Repositories
             CancellationToken cancellationToken = default );
         Task<T?> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> ListAllAsync();
+        Task<ListModel<T>> GetListAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            int index = 0,
+            int size = 10,
+            bool ignoreQueryFilters = false,
+            CancellationToken cancellationToken = default
+        );
 
         //Oluşturma işlemleri
         Task<T> AddAsync(T entity);
