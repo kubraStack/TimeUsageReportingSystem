@@ -1,6 +1,8 @@
 ﻿using Application.Features.Department.Command.Create;
 using Application.Features.Department.Command.Delete;
 using Application.Features.Department.Command.Update;
+using Application.Features.Department.Models;
+using Application.Features.Department.Queries.GetAllDepartment;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +41,14 @@ namespace WebApi.Controllers
             DeleteDepartmentResponse response = await _mediator.Send(command);
             return Ok(response);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetAllDepartmentsQuery query)
+        {
+            DepartmentListDto departmentList = await _mediator.Send(query);
+            return Ok(departmentList);
+        }
+
 
     }
 }
