@@ -5,6 +5,7 @@ using Application.Features.Employees.Command.Update;
 using Application.Features.Employees.Models;
 using Application.Features.Employees.Queries.GetAllEmployee;
 using Application.Features.Employees.Queries.GetEmployeeId;
+using Application.Features.Employees.Queries.SearchEmployee;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -69,6 +70,13 @@ namespace WebApi.Controllers
         {
             EmployeeListDto employeeList = await _mediator.Send(query);
             return Ok(employeeList);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] SearchEmployeesQuery query)
+        {
+           EmployeeListDto employeeList = await _mediator.Send(query);
+           return Ok(employeeList);
         }
     }
 }
