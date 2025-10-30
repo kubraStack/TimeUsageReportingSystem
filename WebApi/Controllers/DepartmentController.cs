@@ -3,6 +3,7 @@ using Application.Features.Department.Command.Delete;
 using Application.Features.Department.Command.Update;
 using Application.Features.Department.Models;
 using Application.Features.Department.Queries.GetAllDepartment;
+using Application.Features.Department.Queries.GetDepartmentById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,15 @@ namespace WebApi.Controllers
         {
             DepartmentListDto departmentList = await _mediator.Send(query);
             return Ok(departmentList);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var query = new GetDepartmentByIdQuery { Id = id };
+            DepartmentDetailDto departmentDetail = await _mediator.Send(query);
+            return Ok(departmentDetail);
+
         }
 
 
