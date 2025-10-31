@@ -49,7 +49,7 @@ namespace Persistence.SeedData
                 Email = "admin@timesystem.com",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Role = Core.Entities.UserType.SystemAdmin,
+                Role = Core.Entities.UserType.Admin,
                 CreatedDate = new DateTime(2004,1,1,0,0,0, DateTimeKind.Utc)
             };
             modelBuilder.Entity<Employee>().HasData(adminUser);

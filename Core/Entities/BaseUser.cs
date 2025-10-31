@@ -22,9 +22,9 @@ namespace Core.Entities
 
     public enum UserType
     {
-        StandardEmployee = 1,
+        Employee = 1,
         Manager = 2,
-        SystemAdmin = 3,
+        Admin = 3,
 
     }
 }

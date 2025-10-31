@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
+using Application.Features.Auth.Register;
 
 namespace Application
 {
@@ -24,6 +25,7 @@ namespace Application
                 //LoggingBehavior eklenebilir buraya
                 cfg.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
                 cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+                
             });
             //mediatr
           

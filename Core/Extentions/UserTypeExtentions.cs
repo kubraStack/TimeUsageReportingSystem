@@ -13,9 +13,9 @@ namespace Core.Extentions
         {
             switch (val)
             {
-                case UserType.SystemAdmin:
+                case UserType.Admin:
                     return "System Admin";
-                case UserType.StandardEmployee:
+                case UserType.Employee:
                     return "Standard Employee";
                 case UserType.Manager:
                     return "Manager";
