@@ -5,7 +5,9 @@ using Application.Features.Employees.Command.Update;
 using Application.Features.Employees.Models;
 using Application.Features.Employees.Queries.GetAllEmployee;
 using Application.Features.Employees.Queries.GetEmployeeId;
+using Application.Features.Employees.Queries.ReportQuery;
 using Application.Features.Employees.Queries.SearchEmployee;
+using Application.Models.Reports;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -77,6 +79,13 @@ namespace WebApi.Controllers
         {
            EmployeeListDto employeeList = await _mediator.Send(query);
            return Ok(employeeList);
+        }
+
+        [HttpGet("reports/monthly")]
+        public async Task<IActionResult> GetMonthlyReport([FromQuery] GetEmployeeMonthlyReportQuery query)
+        {
+            List<ReportResultDto> reportData = await _mediator.Send(query);
+            return Ok(reportData);
         }
     }
 }

@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Behaviors\" />
+    <Folder Include="Features\Auth\Login\" />
+    <Folder Include="Features\Auth\Register\" />
   </ItemGroup>
 
 </Project>
