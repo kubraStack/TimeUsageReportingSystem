@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Core.Application.Pipelines.Authorization
 {
     public class AuthorizationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest: IRequest<TResponse>, ISequredRequest
+        where TRequest: IRequest<TResponse>, ISecuredRequest
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

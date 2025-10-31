@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Application.Pipelines.Authorization
+namespace Core.Application.Pipelines.Logging
 {
-    public interface ISequredRequest
+    public interface ILoggableRequest
     {
-        public string[] RequiredRoles { get;  }
     }
 }
