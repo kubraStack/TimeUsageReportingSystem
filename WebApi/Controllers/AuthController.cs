@@ -1,4 +1,5 @@
 ﻿using Application.Features.Auth.Dtos;
+using Application.Features.Auth.Login;
 using Application.Features.Auth.Register;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterCommand registerCommand)
         {
             LoggedResponse result = await _mediator.Send(registerCommand);
+            return Ok(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LogginCommand loginCommand)
+        {
+            LoggedResponse result = await _mediator.Send(loginCommand);
             return Ok(result);
         }
     }
