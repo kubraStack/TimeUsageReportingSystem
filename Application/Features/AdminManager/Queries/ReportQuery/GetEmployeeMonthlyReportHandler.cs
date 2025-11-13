@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Employees.Queries.ReportQuery
+namespace Application.Features.AdminManager.Queries.ReportQuery
 {
     public class GetEmployeeMonthlyReportHandler : IRequestHandler<GetEmployeeMonthlyReportQuery, List<ReportResultDto>>
     {
@@ -84,7 +84,7 @@ namespace Application.Features.Employees.Queries.ReportQuery
 
                                 if (lunchEndLog != null)
                                 {
-                                    breakDuration += (lunchEndLog.LogTime - log.LogTime);
+                                    breakDuration += lunchEndLog.LogTime - log.LogTime;
                                 }
                             }
 

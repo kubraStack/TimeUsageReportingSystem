@@ -1,5 +1,6 @@
 ﻿using Application.Features.Employees.Models;
 using Application.Models.Paging;
+using Core.Application.Pipelines.Authorization;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Employees.Queries.GetAllEmployee
+namespace Application.Features.AdminManager.Queries.GetAllEmployee
 {
-    public class GetEmployeeListQuery : IRequest<EmployeeListDto>
+    public class GetEmployeeListQuery : IRequest<EmployeeListDto>, ISecuredRequest
     {
         public PageRequest PageRequest { get; set; } = new PageRequest { Page=0, PageSize=10};
+
+        public string[] RequiredRoles => new[] { "Admin","Manager"};
     }
 }

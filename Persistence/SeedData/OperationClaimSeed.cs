@@ -14,9 +14,9 @@ namespace Persistence.SeedData
         {
             modelBuilder.Entity<OperationClaim>().HasData(
                 //Yönetim ve Genel İzinleri
-                new OperationClaim { Id = 1, Name = "Admin" }, //Tüm yetkiler
+                new OperationClaim { Id = 3, Name = "Admin" }, //Tüm yetkiler
                 new OperationClaim { Id = 2, Name = "Manager" } ,// Yönetici yetkileri
-                new OperationClaim { Id=3, Name="Employee"},
+                new OperationClaim { Id=1, Name="Employee"},
 
                 //Çalışan Yönetimi İzinleri
                 new OperationClaim { Id = 4, Name = "employee.add" }, // Standart kullanıcı yetkileri

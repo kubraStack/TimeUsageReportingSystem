@@ -82,7 +82,7 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 3,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Admin"
@@ -96,7 +96,7 @@ namespace Persistence.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Employee"
@@ -190,10 +190,10 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EmployeeId = 1,
                             IsDeleted = false,
-                            OperationClaimId = 1
+                            OperationClaimId = 3
                         });
                 });
 
@@ -238,7 +238,7 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sistem yöneticilerinin departmanı",
                             IsDeleted = false,
                             Name = "Yönetim Kurulu"
@@ -305,14 +305,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DepartmentId = 1,
                             Email = "admin@timesystem.com",
                             EncryptedFirstName = "UGFzc3dvcmRBZG1pbiBmaXJzdCBuYW1lIQ==",
                             EncryptedLastName = "Q2xlYW5BcmNoaXRlY3R1cmUgU2VlZCBmaXg=",
                             IsDeleted = false,
-                            PasswordHash = new byte[] { 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33 },
-                            PasswordSalt = new byte[] { 83, 97, 108, 116, 32, 69, 120, 97, 109, 112, 108, 101 },
+                            PasswordHash = new byte[] { 76, 161, 33, 177, 240, 187, 133, 114, 44, 79, 86, 122, 100, 160, 71, 172, 100, 109, 79, 11, 17, 132, 54, 3, 184, 10, 26, 14, 120, 73, 252, 214, 222, 242, 232, 62, 9, 121, 12, 148, 154, 32, 10, 140, 123, 39, 20, 41, 199, 103, 166, 117, 29, 53, 113, 69, 182, 234, 252, 224, 65, 88, 222, 83 },
+                            PasswordSalt = new byte[] { 134, 86, 243, 54, 58, 67, 179, 159, 2, 70, 151, 54, 120, 40, 224, 114, 228, 101, 227, 207, 251, 6, 120, 25, 64, 67, 48, 160, 164, 183, 65, 21, 139, 175, 17, 65, 81, 3, 9, 11, 194, 68, 176, 92, 61, 131, 250, 174, 48, 188, 128, 145, 63, 57, 132, 141, 178, 237, 109, 119, 178, 79, 196, 136, 64, 107, 89, 63, 52, 139, 144, 110, 137, 20, 25, 29, 173, 17, 25, 145, 145, 240, 177, 113, 183, 63, 170, 145, 216, 172, 172, 81, 81, 104, 206, 208, 88, 75, 136, 222, 225, 12, 61, 157, 5, 58, 128, 77, 158, 200, 253, 65, 203, 62, 201, 141, 123, 3, 57, 234, 85, 27, 2, 220, 181, 231, 20, 0 },
                             Role = 3
                         });
                 });

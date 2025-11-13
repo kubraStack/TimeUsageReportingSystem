@@ -2,13 +2,15 @@
 using Application.Repositories.EmployeeRepo;
 using Core.Utilities.Encryption;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Employees.Queries.GetAllEmployee
+namespace Application.Features.AdminManager.Queries.GetAllEmployee
 {
     public class GetEmployeeListHandler : IRequestHandler<GetEmployeeListQuery, EmployeeListDto>
     {
@@ -23,6 +25,8 @@ namespace Application.Features.Employees.Queries.GetAllEmployee
 
         public async Task<EmployeeListDto> Handle(GetEmployeeListQuery request, CancellationToken cancellationToken)
         {
+           
+
             //Repository'den sayfalanmış verileri çek
             var employeesPageable = await _employeeRepository.GetListAsync(
                     //filtreleme

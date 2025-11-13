@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Auth.Login
 {
-    public class LogginCommand : IRequest<LoggedResponse>
+    public class LoginCommand : IRequest<LoggedResponse>
     {
         public string Email { get; set; }
         public string Password { get; set; }

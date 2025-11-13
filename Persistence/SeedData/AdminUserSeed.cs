@@ -14,18 +14,18 @@ namespace Persistence.SeedData
     public static class AdminUserSeed
     {
 
-        private const string ADMIN_PASSWORD_HASH_BASE64 = "SGVsbG8gV29ybGQh"; // "Hello World!" örnek
-        private const string ADMIN_PASSWORD_SALT_BASE64 = "U2FsdCBFeGFtcGxl";  // "Salt Example" örnek
+        private static readonly string ADMIN_PASSWORD_HASH_BASE64_STATIC = "TKEhsfC7hXIsT1Z6ZKBHrGRtTwsRhDYDuAoaDnhJ/Nbe8ug+CXkMlJogCox7JxQpx2emdR01cUW26vzgQVjeUw==";
+        private static readonly string ADMIN_PASSWORD_SALT_BASE64_STATIC = "hlbzNjpDs58CRpc2eCjgcuRl48/7BngZQEMwoKS3QRWLrxFBUQMJC8JEsFw9g/quMLyAkT85hI2y7W13sk/EiEBrWT80i5BuiRQZHa0RGZGR8LFxtz+qkdisrFFRaM7QWEuI3uEMPZ0FOoBNnsj9Qcs+yY17AznqVRsC3LXnFAA=";
 
         private const string ADMIN_FNAME_ENCRYPTED = "UGFzc3dvcmRBZG1pbiBmaXJzdCBuYW1lIQ==";
         private const string ADMIN_LNAME_ENCRYPTED = "Q2xlYW5BcmNoaXRlY3R1cmUgU2VlZCBmaXg=";
 
-        
 
         public static void Seed(ModelBuilder modelBuilder)
         {
-            byte[] passwordHash = Convert.FromBase64String(ADMIN_PASSWORD_HASH_BASE64);
-            byte[] passwordSalt = Convert.FromBase64String(ADMIN_PASSWORD_SALT_BASE64);
+            byte[] passwordHash = Convert.FromBase64String(ADMIN_PASSWORD_HASH_BASE64_STATIC);
+            byte[] passwordSalt = Convert.FromBase64String(ADMIN_PASSWORD_SALT_BASE64_STATIC);
+
 
             //varsayılan departmanı ekle
             modelBuilder.Entity<Department>().HasData(
@@ -34,7 +34,7 @@ namespace Persistence.SeedData
                     Id = 1,
                     Name = "Yönetim Kurulu",
                     Description = "Sistem yöneticilerinin departmanı",
-                    CreatedDate = new DateTime(2004,1,1,0,0,0, DateTimeKind.Utc),
+                    CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0),
 
                 }
             );
@@ -50,7 +50,7 @@ namespace Persistence.SeedData
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Role = Core.Entities.UserType.Admin,
-                CreatedDate = new DateTime(2004,1,1,0,0,0, DateTimeKind.Utc)
+                CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0)
             };
             modelBuilder.Entity<Employee>().HasData(adminUser);
 
@@ -60,8 +60,8 @@ namespace Persistence.SeedData
                  {
                      Id = 1,
                      EmployeeId = adminUser.Id,
-                     OperationClaimId = 1, // Admin OperationClaim Id'si
-                     CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                     OperationClaimId = 3, // Admin OperationClaim Id'si
+                     CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0)
                  }
             );
 

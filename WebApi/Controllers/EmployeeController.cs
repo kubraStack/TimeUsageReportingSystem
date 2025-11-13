@@ -1,17 +1,19 @@
-﻿using Application.Features.Employees.Command.ChangePasword;
+﻿using Application.Features.AdminManager.Commands.UpdateEmployee;
+using Application.Features.AdminManager.Queries.GetAllEmployee;
+using Application.Features.AdminManager.Queries.ReportQuery;
+using Application.Features.AdminManager.Queries.SearchEmployee;
+using Application.Features.Employees.Command.ChangePasword;
 using Application.Features.Employees.Command.Create;
 using Application.Features.Employees.Command.Delete;
 using Application.Features.Employees.Command.Update;
 using Application.Features.Employees.Models;
-using Application.Features.Employees.Queries.GetAllEmployee;
 using Application.Features.Employees.Queries.GetEmployeeId;
-using Application.Features.Employees.Queries.ReportQuery;
-using Application.Features.Employees.Queries.SearchEmployee;
 using Application.Models.Reports;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace WebApi.Controllers
 {
@@ -20,10 +22,11 @@ namespace WebApi.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public EmployeeController(IMediator mediator)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public EmployeeController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
             _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         //Ekleme
@@ -59,15 +62,15 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        [HttpGet("myProfile")]
+        public async Task<IActionResult> GetMyProfile()
         {
-            var query = new GetEmployeeByIdQuery { Id = id };
+            var query = new GetEmployeeByIdQuery();
             EmployeeDetailDto employeeDetail = await _mediator.Send(query);
             return Ok(employeeDetail);
         }
 
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> GetList([FromQuery] GetEmployeeListQuery query)
         {
             EmployeeListDto employeeList = await _mediator.Send(query);
@@ -80,7 +83,12 @@ namespace WebApi.Controllers
            EmployeeListDto employeeList = await _mediator.Send(query);
            return Ok(employeeList);
         }
-
+        [HttpPut("admin-panel/update")]
+        public async Task<IActionResult> AdminPanelUpdate([FromBody] UpdateEmployeeForAdminCommand updateCommand)
+        {
+            UpdateEmployeeForAdminResponse result = await _mediator.Send(updateCommand);
+            return Ok(result);
+        }
         [HttpGet("reports/monthly")]
         public async Task<IActionResult> GetMonthlyReport([FromQuery] GetEmployeeMonthlyReportQuery query)
         {

@@ -150,16 +150,16 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Departments",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "IsDeleted", "Name", "UpdatedDate" },
-                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Sistem yöneticilerinin departmanı", false, "Yönetim Kurulu", null });
+                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Sistem yöneticilerinin departmanı", false, "Yönetim Kurulu", null });
 
             migrationBuilder.InsertData(
                 table: "OperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsDeleted", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Admin", null },
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Employee", null },
                     { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Manager", null },
-                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Employee", null },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Admin", null },
                     { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "employee.add", null },
                     { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "employee.update", null },
                     { 6, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "employee.delete", null },
@@ -172,7 +172,7 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "DepartmentId", "Email", "FirstName", "LastName", "IsDeleted", "PasswordHash", "PasswordSalt", "Role", "UpdatedDate" },
-                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, "admin@timesystem.com", "UGFzc3dvcmRBZG1pbiBmaXJzdCBuYW1lIQ==", "Q2xlYW5BcmNoaXRlY3R1cmUgU2VlZCBmaXg=", false, new byte[] { 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33 }, new byte[] { 83, 97, 108, 116, 32, 69, 120, 97, 109, 112, 108, 101 }, 3, null });
+                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "admin@timesystem.com", "UGFzc3dvcmRBZG1pbiBmaXJzdCBuYW1lIQ==", "Q2xlYW5BcmNoaXRlY3R1cmUgU2VlZCBmaXg=", false, new byte[] { 76, 161, 33, 177, 240, 187, 133, 114, 44, 79, 86, 122, 100, 160, 71, 172, 100, 109, 79, 11, 17, 132, 54, 3, 184, 10, 26, 14, 120, 73, 252, 214, 222, 242, 232, 62, 9, 121, 12, 148, 154, 32, 10, 140, 123, 39, 20, 41, 199, 103, 166, 117, 29, 53, 113, 69, 182, 234, 252, 224, 65, 88, 222, 83 }, new byte[] { 134, 86, 243, 54, 58, 67, 179, 159, 2, 70, 151, 54, 120, 40, 224, 114, 228, 101, 227, 207, 251, 6, 120, 25, 64, 67, 48, 160, 164, 183, 65, 21, 139, 175, 17, 65, 81, 3, 9, 11, 194, 68, 176, 92, 61, 131, 250, 174, 48, 188, 128, 145, 63, 57, 132, 141, 178, 237, 109, 119, 178, 79, 196, 136, 64, 107, 89, 63, 52, 139, 144, 110, 137, 20, 25, 29, 173, 17, 25, 145, 145, 240, 177, 113, 183, 63, 170, 145, 216, 172, 172, 81, 81, 104, 206, 208, 88, 75, 136, 222, 225, 12, 61, 157, 5, 58, 128, 77, 158, 200, 253, 65, 203, 62, 201, 141, 123, 3, 57, 234, 85, 27, 2, 220, 181, 231, 20, 0 }, 3, null });
 
             migrationBuilder.InsertData(
                 table: "TimeLogs",
@@ -186,7 +186,7 @@ namespace Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "EmployeeId", "IsDeleted", "OperationClaimId", "UpdatedDate" },
-                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, false, 1, null });
+                values: new object[] { 1, new DateTime(2004, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, false, 3, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_Name",

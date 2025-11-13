@@ -35,8 +35,7 @@ namespace Application.Features.Employees.Command.Update
             currentEmployee.EncryptedFirstName = encryptedFirstName;
             currentEmployee.EncryptedLastName = encryptedLastName;
             currentEmployee.Email = request.Email;
-            currentEmployee.DepartmentId = request.DepartmentId;
-            currentEmployee.Role = request.Role;
+            
             currentEmployee.UpdatedDate = DateTime.UtcNow;
             
              await _employeeRepository.UpdateAsync(currentEmployee);

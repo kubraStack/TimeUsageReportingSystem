@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Auth.Login
 {
-    public class LoginCommandValidator : AbstractValidator<LogginCommand>
+    public class LoginCommandValidator : AbstractValidator<LoginCommand>
     {
         public LoginCommandValidator()
         {

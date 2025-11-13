@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Employees.Queries.ReportQuery
+namespace Application.Features.AdminManager.Queries.ReportQuery
 {
     public class GetEmployeeMonthlyReportQuery : IRequest<List<ReportResultDto>>, ISecuredRequest
     {
         //Raporun alınacağı başlangıç ve bitiş tarihleri
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string[] RequiredRoles => new[] {"Admin"};
+        public string[] RequiredRoles => new[] {"Admin","Manager"};
     }
 }

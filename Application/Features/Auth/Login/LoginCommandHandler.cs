@@ -13,18 +13,18 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Auth.Login
 {
-    public class LogginCommandHandler : IRequestHandler<LogginCommand, LoggedResponse>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoggedResponse>
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ITokenHelper _tokenHelper;
 
-        public LogginCommandHandler(IEmployeeRepository employeeRepository, ITokenHelper tokenHelper)
+        public LoginCommandHandler(IEmployeeRepository employeeRepository, ITokenHelper tokenHelper)
         {
             _employeeRepository = employeeRepository;
             _tokenHelper = tokenHelper;
         }
 
-        public async Task<LoggedResponse> Handle(LogginCommand request, CancellationToken cancellationToken)
+        public async Task<LoggedResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             //Kullanıcının varlığını kontrol edelim
             var employee = await _employeeRepository.GetByEmailAsync(request.Email);

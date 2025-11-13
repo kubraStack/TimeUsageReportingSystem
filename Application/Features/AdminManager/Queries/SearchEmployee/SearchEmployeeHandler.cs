@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Employees.Queries.SearchEmployee
+namespace Application.Features.AdminManager.Queries.SearchEmployee
 {
     public class SearchEmployeeHandler : IRequestHandler<SearchEmployeesQuery, EmployeeListDto>
     {
