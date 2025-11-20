@@ -1,11 +1,13 @@
 ﻿using Application.Repositories.DepartmentRepo;
 using Application.Repositories.EmployeeRepo;
 using Application.Repositories.TimeLogRepo;
+using Core.Application.Pipelines.Transaction;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Data;
 using Persistence.Repositories;
+using Persistence.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,7 @@ namespace Persistence
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ITimeLogRepository, TimeLogRepository>();
             services.AddScoped<IDepartmentRepository,  DepartmentRepository>();
+            services.AddScoped<ITransactionService, TransactionManager>();
 
             return services;
         }

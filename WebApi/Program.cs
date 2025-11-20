@@ -9,6 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Persistence;
 using System.Text;
+using Core.Application.Pipelines.Chaching;
+using Core.CrossCuttingConcerns.Caching.Microsoft;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +41,7 @@ builder.Services.AddSingleton<EncryptionHelper>();
 builder.Services.AddCoreServices(tokenOptions);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddSingleton<ICacheService, MemoryCacheManager>();
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(
@@ -100,7 +103,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 
 });
-
+builder.Services.AddMemoryCache();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
