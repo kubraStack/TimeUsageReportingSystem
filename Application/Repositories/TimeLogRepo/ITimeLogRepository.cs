@@ -11,6 +11,7 @@ namespace Application.Repositories.TimeLogRepo
     {
         //Çalışanın bugüne ait tüm kayıtlarını getirir.
         Task<IReadOnlyList<TimeLog>> GetLogsForToday(int employeeId);
+        Task<TimeLog> UpdateReturningEntityAsync(TimeLog timeLog);
 
         //Raporlama için tarih aralığı ve çalışan ID'sine göre listeleme
         Task<IReadOnlyList<TimeLog>> GetLogsByEmpAndDateRangeAsync(

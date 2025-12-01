@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\TimeLog\Queries\" />
+    <Folder Include="Features\TimeLog\Commands\Delete\" />
   </ItemGroup>
 
 </Project>

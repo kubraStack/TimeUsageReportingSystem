@@ -58,5 +58,12 @@ namespace Persistence.Repositories
                 .ToListAsync();
 
         }
+
+        public async Task<TimeLog> UpdateReturningEntityAsync(TimeLog timeLog)
+        {
+            _dbContext.Entry(timeLog).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return timeLog;
+        }
     }
 }

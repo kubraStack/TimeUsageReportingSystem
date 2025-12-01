@@ -1,5 +1,6 @@
 ﻿using Application.Features.TimeLog.Commands.CheckIn;
 using Application.Features.TimeLog.Commands.CheckOut;
+using Application.Features.TimeLog.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,5 +35,12 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
+        //Güncelleme
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateTimeLogCommand updateTimeLogCommand)
+        {
+            UpdateTimeLogResponse response = await _mediator.Send(updateTimeLogCommand);
+            return Ok(response);
+        }
     }
 }
