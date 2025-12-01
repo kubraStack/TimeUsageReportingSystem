@@ -13,23 +13,23 @@ namespace Persistence.SeedData
         public static void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TimeLog>().HasData(
-                //Admin (ID=1) için örnek zaman kayıtları
-                new TimeLog
-                {
-                    Id = 1,
-                    EmployeeId = 1,
-                    LogType= LogType.Entry,
-                    LogTime = new DateTime(2025, 10, 18, 9, 0, 0, DateTimeKind.Utc), // Sabit tarih
-                    CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                },
-                new TimeLog
-                {
-                    Id = 2,
-                    EmployeeId = 1,
-                    LogType= LogType.Exit,
-                    LogTime = new DateTime(2025, 10, 18, 18, 0, 0, DateTimeKind.Utc), // Sabit tarih
-                    CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                }
+                ////Admin (ID=1) için örnek zaman kayıtları
+                //new TimeLog
+                //{
+                //    Id = 1,
+                //    EmployeeId = 1,
+                //    LogType= LogType.Entry,
+                //    LogTime = new DateTime(2025, 10, 18, 9, 0, 0, DateTimeKind.Utc), // Sabit tarih
+                //    CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                //},
+                //new TimeLog
+                //{
+                //    Id = 2,
+                //    EmployeeId = 1,
+                //    LogType= LogType.Exit,
+                //    LogTime = new DateTime(2025, 10, 18, 18, 0, 0, DateTimeKind.Utc), // Sabit tarih
+                //    CreatedDate = new DateTime(2004, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                //}
 
             );
         }

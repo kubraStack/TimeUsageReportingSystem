@@ -24,14 +24,25 @@ namespace Application.Features.TimeLog.Commands.CheckOut
 
         public async Task<CheckOutResponse> Handle(CheckOutCommand request, CancellationToken cancellationToken)
         {
-            // 1. İş Kuralı: Çalışanın  en son kaydını bul
-            Domain.Entities.TimeLog lastLog = await _timeLogRepository.GetLastestLogByEmpIdAsync(request.EmployeeId);
-            if (lastLog == null || lastLog.LogType != LogType.Entry)
+
+            //En son Entry ve Exit kayıtlarını al 
+            Domain.Entities.TimeLog? lastEntryLog = await _timeLogRepository.GetLastestLogByTypeAsync(request.EmployeeId, LogType.Entry);
+            Domain.Entities.TimeLog? lastExitLog = await _timeLogRepository.GetLastestLogByTypeAsync(request.EmployeeId, LogType.Exit);
+
+            //Kontrol A:
+            //Hiç Entry kaydı yoksa çıkış yapılamaz
+            if (lastEntryLog == null)
             {
-                //Çıkış yapmak için bir mesai giriş kaydının (Entry) bulunması gerekir.
-                throw new BusinessException("Çıkış yapmak için aktif bir mesai giriş kaydı bulunmamaktadır.");
+                throw new BusinessException("Çıkış yapmak için aktif bir giriş kaydı bulunamadı !");
+            }
+            //Kontrol B:
+            //Eğer Entry var ancak Exit kaydı daha yeniyse veya aynı anda ise zaten çıkış yapılmış demektir.
+            if (lastExitLog != null && lastExitLog.LogTime >= lastEntryLog.LogTime)
+            {
+                throw new BusinessException("Çıkış yapmak için aktif bir mesai giriş kaydı bulunmaktadır.(En son kayıt zaten çıkış/izin kaydıdır.)");
             }
 
+         
             //Çalışan bilgisini çekelim
             Employee? employee = await _employeeRepository.GetAsync(
                 predicate: e => e.Id == request.EmployeeId,
@@ -50,14 +61,16 @@ namespace Application.Features.TimeLog.Commands.CheckOut
                 LogTime = DateTime.UtcNow,
             };
 
-            //Kaydet
+            ////Kaydet
             var createdExitLog = await _timeLogRepository.AddAsync(newExitLog);
-            //Süreyi hesapla 
-            TimeSpan duration = createdExitLog.LogTime - lastLog.LogTime;
+
+            ////Süreyi hesapla 
+            TimeSpan duration = createdExitLog.LogTime - lastEntryLog.LogTime;
+
             return new CheckOutResponse
             {
                 Id = createdExitLog.Id,
-                ChechInTime = lastLog.LogTime, //En son entry zamanı
+                ChechInTime = lastEntryLog.LogTime, //En son entry zamanı
                 ChechOutTime = createdExitLog.LogTime,
                 Duration = duration,
                 EmployeeEmail = employee.Email

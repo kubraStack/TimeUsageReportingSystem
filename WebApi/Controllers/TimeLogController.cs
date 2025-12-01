@@ -1,4 +1,5 @@
-﻿using Application.Features.TimeLog.Commands.CheckOut;
+﻿using Application.Features.TimeLog.Commands.CheckIn;
+using Application.Features.TimeLog.Commands.CheckOut;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,15 @@ namespace WebApi.Controllers
         public TimeLogController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        //İşe Giriş(check-in)
+        [HttpPost("checkin")]
+        public async Task<IActionResult> CheckIn([FromBody] CheckInCommand checkInCommand)
+        {
+            CheckInCommandResponse response = await _mediator.Send(checkInCommand);
+            return Created("", response);
+
         }
 
         //İşe Çıkış(check-out)
