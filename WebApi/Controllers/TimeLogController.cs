@@ -1,5 +1,6 @@
 ﻿using Application.Features.TimeLog.Commands.CheckIn;
 using Application.Features.TimeLog.Commands.CheckOut;
+using Application.Features.TimeLog.Commands.Delete;
 using Application.Features.TimeLog.Commands.Update;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateTimeLogCommand updateTimeLogCommand)
         {
             UpdateTimeLogResponse response = await _mediator.Send(updateTimeLogCommand);
+            return Ok(response);
+        }
+
+        //Silme
+        public  async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            DeleteTimeLogResponse response = await _mediator.Send(new DeleteTimeLogCommand { Id = id });
             return Ok(response);
         }
     }
